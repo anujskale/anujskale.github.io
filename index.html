@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atharva Kulkarni</title>
+<meta name="description" content="Atharva Kulkarni — Robotics &amp; Mechanical Engineer. ROS 2, Nav2, embedded systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <h1>Atharva Kulkarni</h1>
+    <p class="role">Mechanical Engineer &mdash; Robotics</p>
+    <nav class="links">
+      <a href="mailto:your.email@example.com">email</a>
+      <span class="dot">&middot;</span>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">github</a>
+      <span class="dot">&middot;</span>
+      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">linkedin</a>
+      <span class="dot">&middot;</span>
+      <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
+    </nav>
+  </header>
+
+  <section class="intro">
+    <p>
+      I build robots that take language and intent, and turn them into safe physical motion:
+      LLM-driven mission pipelines, voice interaction layers, navigation stacks, and the
+      embedded systems underneath them. My background is mechanical engineering, and I work
+      across the full stack, from CAD and fabrication to ROS&nbsp;2 and Nav2.
+    </p>
+  </section>
+
+  <section class="projects">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Omokai</h3>
+        <span class="tag-status">status: functional end-to-end</span>
+      </div>
+      <p class="project-meta">Solo developer &middot; technical assignment</p>
+      <p class="project-body">
+        Closes the loop from spoken intent to physical robot motion. A natural-language
+        instruction is parsed by an LLM into a structured mission, checked against a
+        deterministic safety validator, and executed as a real Nav2 navigation task inside
+        Gazebo. The goal wasn't just to make an LLM output JSON, it was to build the
+        guardrails that make it safe to act on.
+      </p>
+      <p class="project-decision">
+        <span class="label">key decision &mdash;</span> put a hard validation layer between
+        the LLM and the executor. The LLM is treated as untrusted input: nothing reaches Nav2
+        without first passing schema checks and safety bounds, so a hallucinated waypoint
+        fails loudly before it ever reaches a motor command.
+      </p>
+      <p class="project-links">
+        <a href="#" target="_blank" rel="noopener">code</a>
+      </p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>XLR8</h3>
+        <span class="tag-status">status: voice pipeline complete</span>
+      </div>
+      <p class="project-meta">Solo developer &middot; voice-driven robotics assistant</p>
+      <p class="project-body">
+        A modular voice-assistant system built on ROS&nbsp;2, where independent nodes handle
+        speech recognition, intent classification, LLM-based reasoning, and speech synthesis,
+        communicating entirely through ROS topics, services, and actions. Designed as the
+        interaction layer for a robotics platform, with a defined interface for downstream
+        robot-action execution.
+      </p>
+      <p class="project-decision">
+        <span class="label">key decision &mdash;</span> implemented speech output as a
+        cancellable ROS&nbsp;2 action rather than a fire-and-forget service, enabling
+        real-time barge-in: the system stops talking the instant the user starts speaking
+        again.
+      </p>
+      <p class="project-links">
+        <a href="#" target="_blank" rel="noopener">code</a>
+      </p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>DAUS</h3>
+        <span class="tag-status">status: published</span>
+      </div>
+      <p class="project-meta">Author &middot; published research paper</p>
+      <p class="project-body">
+        A modular, cost-efficient autonomous drone system for disaster response. The UAS
+        autonomously scans a user-defined area, detects disaster zones with a YOLOv8-based
+        vision model, and performs payload drops without ground control, fusing LiDAR, PX4
+        telemetry, and GPS onboard for precise delivery. Validated through SITL simulation and
+        field testing: 2&nbsp;kg payload capacity, 25-minute flight endurance.
+      </p>
+      <p class="project-links">
+        <a href="#" target="_blank" rel="noopener">paper (pg. 164)</a>
+      </p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Quadruped Robot</h3>
+        <span class="tag-status">status: earlier project</span>
+      </div>
+      <p class="project-meta">Solo developer &middot; personal project</p>
+      <p class="project-body">
+        A 12-DOF quadruped robot built from the ground up on an Arduino Nano and twelve SG90
+        servo motors, with coordinated gait control and motion sequencing for walking and
+        expressive movements.
+      </p>
+      <p class="project-decision">
+        <span class="label">key decision &mdash;</span> used predefined gait sequences with
+        synchronized joint trajectories, prioritizing repeatable locomotion over
+        computationally intensive approaches like inverse kinematics, to stay within the
+        Arduino Nano's headroom.
+      </p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Multirotor UAV</h3>
+        <span class="tag-status">status: All India Rank 11</span>
+      </div>
+      <p class="project-meta">Electronics Head &middot; SAE AeroTHON, Team Squadrone</p>
+      <p class="project-body">
+        Designed and integrated the electronics architecture for a multirotor UAV built for
+        the SAE AeroTHON competition: flight controller, companion computer, sensors, power
+        distribution, and communication interfaces, for autonomous navigation, aerial
+        surveying, and payload delivery.
+      </p>
+      <p class="project-decision">
+        <span class="label">key decision &mdash;</span> paired a Pixhawk-based flight
+        controller with a Raspberry Pi companion computer, separating real-time flight control
+        from high-level autonomy.
+      </p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>PLC Clamp-Declamp System</h3>
+        <span class="tag-status">status: complete</span>
+      </div>
+      <p class="project-meta">Mechanical / industrial automation project</p>
+      <p class="project-body">
+        Designed and programmed a PLC-controlled pneumatic clamp-declamp system on a
+        Mitsubishi FX3G-14M, controlling a double-acting cylinder through a 5/3
+        double-solenoid valve with push-button inputs and proximity sensor feedback.
+      </p>
+    </article>
+
+  </section>
+
+  <section class="skills">
+    <h2>Skills</h2>
+    <p class="skills-line">
+      ROS&nbsp;2 &middot; Nav2 &middot; Gazebo &middot; micro-ROS &middot; Python &middot; C++
+      &middot; SolidWorks &middot; GD&amp;T &middot; KiCad &middot; PLC / Ladder Logic
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    <p>Last updated July 2026. Site adapted from a template shared by Jon Barron.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
