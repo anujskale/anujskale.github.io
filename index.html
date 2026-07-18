@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atharva Kulkarni</title>
-<meta name="description" content="Atharva Kulkarni — Robotics &amp; Mechanical Engineer. ROS 2, Nav2, embedded systems.">
+<title>Anuj Kale</title>
+<meta name="description" content="Anuj Kale — Robotics &amp; Mechanical Engineer. ROS 2, Mechanical, embedded systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,14 +15,14 @@
 <div class="wrap">
 
   <header class="site-header">
-    <h1>Atharva Kulkarni</h1>
+    <h1>Anuj Kale</h1>
     <p class="role">Mechanical Engineer &mdash; Robotics</p>
     <nav class="links">
-      <a href="mailto:your.email@example.com">email</a>
+      <a href="mailto:anujskale@gmail.com">email</a>
       <span class="dot">&middot;</span>
-      <a href="https://github.com/your-username" target="_blank" rel="noopener">github</a>
+      <a href="https://github.com/askyncme" target="_blank" rel="noopener">github</a>
       <span class="dot">&middot;</span>
-      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">linkedin</a>
+      <a href="www.linkedin.com/in/anuj-kale-6725322" target="_blank" rel="noopener">linkedin</a>
       <span class="dot">&middot;</span>
       <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
     </nav>
@@ -30,10 +30,11 @@
 
   <section class="intro">
     <p>
-      I build robots that take language and intent, and turn them into safe physical motion:
-      LLM-driven mission pipelines, voice interaction layers, navigation stacks, and the
-      embedded systems underneath them. My background is mechanical engineering, and I work
-      across the full stack, from CAD and fabrication to ROS&nbsp;2 and Nav2.
+      Mechanical Engineering graduate with experience in autonomous UAVs, ROS2 robotics,
+computer vision, and embedded systems. Electronics Lead for Team Squadrone's SAE
+AeroTHON 2025 UAV project (AIR 11) and co-author of a published UAV research paper
+presented at DAUS 2026. Interested in navigation, guidance, control systems, and autonomous
+aerial robotics.
     </p>
   </section>
 
@@ -43,24 +44,31 @@
     <article class="project">
       <div class="project-head">
         <h3>Omokai</h3>
-        <span class="tag-status">status: functional end-to-end</span>
+        <span class="tag-status">status: Work in progress</span>
       </div>
       <p class="project-meta">Solo developer &middot; technical assignment</p>
       <p class="project-body">
-        Closes the loop from spoken intent to physical robot motion. A natural-language
-        instruction is parsed by an LLM into a structured mission, checked against a
-        deterministic safety validator, and executed as a real Nav2 navigation task inside
-        Gazebo. The goal wasn't just to make an LLM output JSON, it was to build the
-        guardrails that make it safe to act on.
+        Omokai closes the loop from spoken intent to physical robot motion. A natural-language 
+instruction is parsed by an LLM into a structured mission, checked against a deterministic safety 
+validator, and executed as a real Nav2 navigation task inside Gazebo. The goal wasn't just to 
+make an LLM output JSON, it was to build the guardrails that make it safe to act on.
       </p>
       <p class="project-decision">
-        <span class="label">key decision &mdash;</span> put a hard validation layer between
-        the LLM and the executor. The LLM is treated as untrusted input: nothing reaches Nav2
-        without first passing schema checks and safety bounds, so a hallucinated waypoint
-        fails loudly before it ever reaches a motor command.
+        <span class="label">KEY DECISIONS &mdash;</span>Chose Groq (llama3-8b-8192) over local inference. Ollama technically worked but was 
+unusably slow on CPU-only hardware, and other hosted providers hit access or deprecation 
+issues. Groq's free tier gave the best latency-to-reliability tradeoff, the priority was a model 
+that responds consistently, not the most capable one available.
+Put a hard validation layer between the LLM and the executor. The LLM is treated as 
+untrusted input. Nothing reaches Nav2 without first passing schema checks and safety 
+bounds, this was a deliberate design choice, not an afterthought, because an LLM 
+hallucinating a bad waypoint should fail loudly before it ever reaches a motor command.
+Diagnosed and fixed a Nav2 activation hang at its root cause. The stall traced back to a 
+slam_toolbox lifecycle dependency blocking Nav2's localizer check. Rather than papering 
+over it with retries or timeouts, the check itself was bypassed once the actual dependency 
+was identified, fixing the cause, not the symptom.
       </p>
       <p class="project-links">
-        <a href="#" target="_blank" rel="noopener">code</a>
+        <a href="#" target="_blank" rel="noopener">https://github.com/askyncme/omokai_ws</a>
       </p>
     </article>
 
