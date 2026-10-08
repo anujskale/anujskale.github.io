@@ -1,191 +1,226 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anuj Kale</title>
-<meta name="description" content="Anuj Kale — Robotics &amp; Mechanical Engineer. ROS 2, Mechanical, embedded systems.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anuj Kale | Robotics and Mechanical Engineer</title>
+<meta name="description" content="Anuj Kale, robotics and mechanical engineer. ROS 2, autonomous UAVs, embedded systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stylesheet.css">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffbea;--ink:#000;--y:#ffd93d;--p:#ff7ab8;--m:#6ee7b7;--b:#7aa7ff;--w:#fff;--bd:3px solid #000;--sh:6px 6px 0 #000}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Space Grotesk",system-ui,sans-serif}
+h1,h2,h3{font-family:"Archivo Black","Arial Black",sans-serif;font-weight:400;line-height:1.05;margin:0;letter-spacing:-.01em}
+a{color:var(--ink);font-weight:700}
+:focus-visible{outline:4px solid #000;outline-offset:3px;background:var(--y)}
+header{position:sticky;top:0;z-index:5;background:var(--y);border-bottom:var(--bd)}
+.bar{max-width:1080px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font:400 22px "Archivo Black",sans-serif;margin-right:auto}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{font:700 15px "Space Grotesk",sans-serif;color:var(--ink);background:var(--w);border:var(--bd);padding:7px 14px;cursor:pointer;box-shadow:3px 3px 0 #000;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+button[aria-selected="true"],button[aria-pressed="true"]{background:#000;color:#fff}
+main{max-width:1080px;margin:auto;padding:36px 20px 64px}
+.tab{display:none}.tab.on{display:block}
+.namebox{background:var(--b);border:var(--bd);box-shadow:10px 10px 0 #000;padding:26px 28px;margin-bottom:36px}
+.namebox h1{font-size:clamp(46px,10vw,104px)}
+.role{display:inline-block;background:var(--y);border:var(--bd);padding:4px 12px;font-weight:700;font-size:clamp(17px,2.4vw,22px);margin-top:16px}
+.about{max-width:64ch;margin:0 0 14px;font-size:18px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 4px}
+.btn.main{background:var(--p)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin:36px 0}
+.stat{border:var(--bd);box-shadow:var(--sh);padding:14px 16px}
+.stat:nth-child(1){background:var(--m)}.stat:nth-child(2){background:var(--y)}.stat:nth-child(3){background:var(--p)}.stat:nth-child(4){background:var(--b)}
+.stat b{display:block;font:400 34px "Archivo Black",sans-serif}
+h2{font-size:clamp(30px,5vw,44px);display:inline-block;background:var(--y);border:var(--bd);box-shadow:var(--sh);padding:6px 14px;margin:0 0 14px}
+.lead{margin:0 0 22px;max-width:64ch}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.skill{background:var(--w);border:var(--bd);box-shadow:var(--sh);padding:14px}
+.skill h3{font-size:18px;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.chips li{background:var(--bg);border:2px solid #000;padding:1px 8px;font-size:14px;font-weight:700}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:30px}
+.card{background:var(--w);border:var(--bd);box-shadow:var(--sh);display:flex;flex-direction:column}
+.card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #000}
+.top{border-bottom:var(--bd);padding:12px 16px;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card:nth-child(4n+1) .top{background:var(--y)}.card:nth-child(4n+2) .top{background:var(--m)}.card:nth-child(4n+3) .top{background:var(--p)}.card:nth-child(4n) .top{background:var(--b)}
+.top h3{font-size:22px}
+.badge{flex:none;background:#000;color:#fff;font-weight:700;font-size:13px;padding:2px 9px;white-space:nowrap}
+.shot{aspect-ratio:16/9;background:var(--bg);border-bottom:var(--bd);display:grid;place-items:center;text-align:center;padding:10px;font-weight:700;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot .big{font:400 clamp(30px,6vw,52px) "Archivo Black",sans-serif;line-height:1.05}
+.shot .big small{display:block;font:700 15px "Space Grotesk",sans-serif;margin-top:6px}
+.body{padding:14px 16px 18px;display:flex;flex-direction:column;flex:1}
+.role2{font-weight:700;margin:0 0 8px}
+.status{align-self:flex-start;border:2px solid #000;background:var(--m);padding:0 9px;font-weight:700;font-size:14px;margin-bottom:10px}
+.card p{margin:0 0 10px}
+.pts{margin:0 0 6px;padding-left:20px}.pts li{margin-bottom:4px}
+.links{margin-top:auto;padding-top:12px;display:flex;gap:14px;flex-wrap:wrap}
+.note{background:var(--w);border:var(--bd);padding:10px 14px;margin:0 0 24px;max-width:84ch;font-size:15px}
+.list{list-style:none;padding:0;margin:0 0 34px;display:grid;gap:18px}
+.list li{background:var(--w);border:var(--bd);box-shadow:var(--sh);padding:14px 18px;display:grid;grid-template-columns:170px 1fr;gap:14px}
+.list li:nth-child(odd) b{background:var(--y)}.list li:nth-child(even) b{background:var(--m)}
+.list b{font:400 20px "Archivo Black",sans-serif;border:2px solid #000;padding:2px 8px;align-self:start}
+.contact{display:grid;gap:16px;max-width:460px}
+footer{max-width:1080px;margin:auto;padding:0 20px 34px;font-weight:700}
+h3.sub{font-size:26px;margin:0 0 14px}
+@media (max-width:640px){.list li{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}button,.btn,.card{transition:none}.card:hover,button:hover,.btn:hover{transform:none}}
+</style>
 </head>
 <body>
+<header><div class="bar">
+<div class="brand">Anuj Kale</div>
+<nav role="tablist" aria-label="Sections" id="nav"></nav>
+</div></header>
 
-<div class="wrap">
-
-  <header class="site-header">
-    <h1>Anuj Kale</h1>
-    <p class="role">Mechanical Engineer &mdash; Robotics</p>
-    <nav class="links">
-      <a href="mailto:anujskale@gmail.com">Email</a>
-      <span class="dot">&middot;</span>
-      <a href="https://github.com/askyncme" target="_blank" rel="noopener">Github</a>
-      <span class="dot">&middot;</span>
-      <a href="https://www.linkedin.com/in/anuj-kale-672532291" target="_blank" rel="noopener">Linkedin</a>
-      <span class="dot">&middot;</span>
-      <a href="Anuj_Kale_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </nav>
-  </header>
-
-  <section class="intro">
-    <p>
-      Mechanical Engineering graduate with experience in autonomous UAVs, ROS2 robotics,
-computer vision, and embedded systems. Electronics Lead for Team Squadrone's SAE
-AeroTHON 2025 UAV project (AIR 11) and co-author of a published UAV research paper
-presented at DAUS 2026. Interested in navigation, guidance, control systems, and autonomous
-aerial robotics.
-    </p>
-  </section>
-
-  <section class="projects">
-    <h2>Projects</h2>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>Omokai</h3>
-        <span class="tag-status">status: Work in progress</span>
-      </div>
-      <p class="project-meta">Solo developer &middot; Technical assignment</p>
-      <p class="project-body">
-        Omokai closes the loop from spoken intent to physical robot motion. A natural-language 
-instruction is parsed by an LLM into a structured mission, checked against a deterministic safety 
-validator, and executed as a real Nav2 navigation task inside Gazebo. The goal wasn't just to 
-make an LLM output JSON, it was to build the guardrails that make it safe to act on.
-      </p>
-      <p class="project-decision">
-        <span class="label">KEY DECISIONS &mdash;</span>Chose Groq (llama3-8b-8192) over local inference. Ollama technically worked but was 
-unusably slow on CPU-only hardware. Groq's free tier gave the best latency-to-reliability tradeoff, the priority was a model 
-that responds consistently. Put a hard validation layer between the LLM and the executor. The LLM is treated as 
-untrusted input. Nothing reaches Nav2 without first passing schema checks and safety 
-bounds, this was a deliberate design choice, not an afterthought, because an LLM 
-hallucinating a bad waypoint should fail loudly before it ever reaches a motor command.
-      </p>
-      <p class="project-links">
-        <a href="https://github.com/askyncme/omokai_ws" target="_blank" rel="noopener">Omokai Repo</a>
-      </p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>XLR8</h3>
-        <span class="tag-status">status: voice pipeline complete, fine tuning drive system</span>
-      </div>
-      <p class="project-meta">Solo developer &middot; Voice-driven robotics assistant</p>
-      <p class="project-body">
-        A modular voice-assistant system built on ROS&nbsp;2, where independent nodes handle
-        speech recognition, intent classification, LLM-based reasoning, and speech synthesis,
-        communicating entirely through ROS topics, services, and actions. Designed as the
-        interaction layer for a robotics platform, with a defined interface for downstream
-        robot-action execution.
-      </p>
-      <p class="project-decision">
-        <span class="label">Key Decision &mdash;</span> Implemented speech output as a
-        cancellable ROS&nbsp;2 action rather than a fire-and-forget service, enabling
-        real-time barge-in: the system stops talking the instant the user starts speaking
-        again. Allowed Robot Motion by voice commands through micro-ros interface.
-      </p>
-      <p class="project-links">
-        <a href="https://github.com/askyncme/mavis-autonomous-lab-assistant" target="_blank" rel="noopener">XLR8 Repo</a>
-      </p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>DAUS</h3>
-        <span class="tag-status">status: published</span>
-      </div>
-      <p class="project-meta">Author &middot; published research paper</p>
-      <p class="project-body">
-        A modular, cost-efficient autonomous drone system for disaster response. The UAS
-        autonomously scans a user-defined area, detects disaster zones with a YOLOv8-based
-        vision model, and performs payload drops without ground control, fusing LiDAR, PX4
-        telemetry, and GPS onboard for precise delivery. Validated through SITL simulation and
-        field testing: 2&nbsp;kg payload capacity, 25-minute flight endurance.
-      </p>
-      <p class="project-links">
-        <a href="https://sensorsportal.com/DOWNLOADS/DAUS_2026_Proceedings.pdf" target="_blank" rel="noopener">Research Paper (pg. 164)</a>
-      </p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>Quadruped Robot</h3>
-        <span class="tag-status">status: earlier project</span>
-      </div>
-      <p class="project-meta">Solo developer &middot; personal project</p>
-      <p class="project-body">
-        A 12-DOF quadruped robot built from the ground up on an Arduino Nano and twelve SG90
-        servo motors, with coordinated gait control and motion sequencing for walking and
-        expressive movements.
-      </p>
-      <p class="project-decision">
-        <span class="label">Key Decision &mdash;</span> Selected a 12-DOF (3 DOF per leg) architecture to enable natural leg articulation while 
-keeping the control system lightweight enough for an Arduino Nano.
-Developed predefined gait sequences with synchronized joint trajectories, prioritizing 
-repeatable locomotion and smooth coordination over computationally intensive approaches 
-such as inverse kinematics.
-      </p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>Multirotor UAV</h3>
-        <span class="tag-status">status: All India Rank 11 in Phase-I</span>
-      </div>
-      <p class="project-meta">Electronics Head &middot; SAE AeroTHON, Team Squadrone</p>
-      <p class="project-body">
-        Designed and integrated the electronics architecture for a multirotor UAV developed for the SAE 
-AeroTHON competition. Responsible for selecting and integrating onboard hardware, including 
-the flight controller, companion computer, sensors, power distribution, and communication 
-interfaces, while collaborating with the mechanical and software teams to build an autonomous 
-aerial platform. The UAV was designed to perform autonomous navigation, aerial surveying, 
-object detection, and payload delivery as part of the competition mission.
-      </p>
-      <p class="project-decision">
-        <span class="label">Key Decision &mdash;</span> Selected a Pixhawk-based flight control architecture paired with a Raspberry Pi companion 
-computer, separating real-time flight control from high-level autonomy. This enabled 
-reliable flight performance while providing sufficient computing capability for perception 
-and mission logic.
-Chose system components by balancing payload capacity, flight endurance, and onboard 
-processing requirements to meet the competition objectives.
-      </p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>PLC Clamp-Declamp System</h3>
-        <span class="tag-status">status: complete</span>
-      </div>
-      <p class="project-meta">Mechanical / Industrial Automation Project</p>
-      <p class="project-body">
-        Designed and programmed a PLC-controlled pneumatic clamp–declamp system using a 
-Mitsubishi FX3G-14M PLC. The system controls the extension and retraction of a double
-acting pneumatic cylinder through a 5/3 double-solenoid directional control valve, integrating 
-push-button inputs and proximity sensor feedback for reliable operation.
-      </p>
-    </article>
-
-  </section>
-
-  <section class="skills">
-  <h2>Skills</h2>
-  <p class="skills-line">
-    ROS&nbsp;2 &middot; Gazebo &middot; RViz &middot; Nav2 &middot; micro-ROS
-    &middot; PX4 &middot; ArduPilot &middot; Mission Planner 
-    &middot; Python &middot; OpenCV &middot; YOLO &middot; Embedded C &middot; Basic C++
-    &middot; Arduino &middot; ESP32 &middot; Raspberry Pi
-    &middot; Computer Vision &middot; Sensor Integration
-    &middot; Mitsubishi FX3G PLC &middot; Ladder Logic
-    &middot; SolidWorks &middot; 3D Printing
-  </p>
+<main>
+<section class="tab" id="home" role="tabpanel">
+<div class="namebox"><h1>Anuj Kale</h1><div class="role">Robotics and mechanical engineer</div></div>
+<p class="about">Mechanical engineering graduate building autonomous robots and drones. I work on ROS 2 navigation, onboard computer vision and embedded control, and I like projects where software has to survive contact with hardware.</p>
+<p class="about">Electronics Head for Team Squadrone (SAE AeroTHON 2025, All India Rank 11) and one of four authors of a paper presented at DAUS 2026. Open to robotics internships and entry-level roles.</p>
+<div class="btns">
+<a class="btn main" href="Anuj_Kale_Resume.pdf">Download resume</a>
+<a class="btn" href="mailto:anujskale@gmail.com">Email me</a>
+<a class="btn" href="https://github.com/askyncme">GitHub</a>
+<a class="btn" href="https://www.linkedin.com/in/anuj-kale-672532291">LinkedIn</a>
+</div>
+<div class="stats" id="stats"></div>
+<h2>Skills</h2>
+<p class="lead">Grouped by what I use them for.</p>
+<div class="skills" id="skills"></div>
 </section>
 
-  <footer class="site-footer">
-    <p>Last updated July 2026. Site adapted from a template shared by Jon Barron.</p>
-  </footer>
+<section class="tab" id="projects" role="tabpanel">
+<h2>Projects</h2>
+<p class="lead">Robots, drones and job simulations. Filter to see one kind at a time.</p>
+<div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+<p class="note" id="simNote" hidden>Job simulations are practical tasks from ProoV and Forage, scored or certified by those platforms. They are educational scenarios and are not affiliated with or endorsed by any company named in them.</p>
+<div class="grid" id="grid"></div>
+</section>
 
+<section class="tab" id="education" role="tabpanel">
+<h2>Education</h2>
+<p class="lead">Degree and certificates.</p>
+<ul class="list" id="eduList"></ul>
+<h3 class="sub">Certificates</h3>
+<ul class="list" id="certList"></ul>
+</section>
+
+<section class="tab" id="achievements" role="tabpanel">
+<h2>Achievements</h2>
+<p class="lead">Results I can point to.</p>
+<ul class="list" id="achList"></ul>
+</section>
+
+<section class="tab" id="contact" role="tabpanel">
+<h2>Contact</h2>
+<p class="lead">The quickest way to reach me is email.</p>
+<div class="contact">
+<a class="btn main" href="mailto:anujskale@gmail.com">anujskale@gmail.com</a>
+<a class="btn" href="https://www.linkedin.com/in/anuj-kale-672532291">LinkedIn</a>
+<a class="btn" href="https://github.com/askyncme">GitHub</a>
+<a class="btn" href="Anuj_Kale_Resume.pdf">Resume (PDF)</a>
 </div>
+</section>
+</main>
+<footer>Last updated October 2026.</footer>
 
+<script>
+var TABS=[["home","Home"],["projects","Projects"],["education","Education"],["achievements","Achievements"],["contact","Contact"]];
+var STATS=[["AIR 11","SAE AeroTHON 2025, Phase 1"],["1 paper","Published at DAUS 2026, 4 authors"],["9 projects","Hardware, software and simulation"],["3 simulations","ProoV and Forage job tasks"]];
+var SKILLS=[
+["Robot software",["ROS 2","Nav2","Gazebo","RViz","micro-ROS","Python"]],
+["Aerial systems",["PX4","ArduPilot","Mission Planner","pymavlink","Pixhawk"]],
+["Perception",["OpenCV","YOLOv8","LiDAR fusion"]],
+["Embedded",["Arduino","ESP32","Raspberry Pi","Embedded C","Basic C++"]],
+["Mechanical and automation",["SolidWorks","3D printing","Mitsubishi FX3G PLC","Ladder logic"]],
+["Planning and safety",["A* and cooperative planning","ISO 21448 SOTIF reasoning","Control diagnostics"]]];
+var FILTERS=[["all","All"],["hardware","Hardware"],["software","Software"],["sim","Job simulations"]];
+var P=[
+{t:"Omokai",c:["software"],r:"Solo developer, technical assignment",s:"Core pipeline working end to end",img:"images/omokai.png",
+ d:"A spoken instruction becomes a structured mission through an LLM, passes a deterministic safety validator, then runs as a real Nav2 task in Gazebo.",
+ p:["Treated the LLM as untrusted input: schema checks and safety bounds run before anything reaches Nav2.","Chose Groq (llama3-8b-8192) over CPU-only local inference for consistent response time.","Traced a Nav2 activation hang to a slam_toolbox lifecycle dependency and fixed the cause instead of adding retries."],
+ tags:["ROS 2","Nav2","Gazebo","Groq API","Python"],l:[["Repo","https://github.com/askyncme/omokai_ws"]]},
+{t:"XLR8",c:["software","hardware"],r:"Solo developer, voice-driven robotics assistant",s:"Voice pipeline complete, tuning the drive system",img:"images/xlr8.png",
+ d:"A modular ROS 2 voice assistant where separate nodes handle speech, intent, LLM reasoning and speech output, with voice-commanded motion through micro-ROS.",
+ p:["Two-stage intent routing: a fast keyword pass with an LLM fallback (Cohere) for ambiguous commands.","Speech output is a cancellable ROS 2 action, so the robot stops talking the moment you speak again.","A fixed action interface keeps the assistant stack separate from robot control."],
+ tags:["ROS 2 Jazzy","Raspberry Pi 5","ESP32","micro-ROS","Nav2"],l:[["Repo","https://github.com/askyncme/mavis-autonomous-lab-assistant"]]},
+{t:"DAUS disaster-response drone",c:["hardware","software"],r:"One of four authors, published research paper",s:"Published, DAUS 2026",img:"images/daus.png",
+ d:"An autonomous drone that scans an area, detects disaster zones with YOLOv8 and drops a payload without ground control.",
+ p:["Built a heading-aware pixel-to-GPS conversion that runs onboard.","Fused LiDAR, PX4 telemetry and GPS to reconstruct terrain and fly lower.","Raspberry Pi 5 runs autonomy and sends waypoints to a Pixhawk 4 through pymavlink; Wi-Fi Direct links the vehicles.","Validated in SITL and field tests: 2 kg payload, 25 minute endurance."],
+ tags:["YOLOv8","PX4","pymavlink","Raspberry Pi 5","LiDAR"],l:[["Paper, page 164","https://sensorsportal.com/DOWNLOADS/DAUS_2026_Proceedings.pdf"]]},
+{t:"Multirotor UAV",c:["hardware"],r:"Electronics Head, Team Squadrone, SAE AeroTHON",s:"All India Rank 11, Phase 1, 2025",img:"images/uav.png",
+ d:"Designed the electronics architecture for an autonomous multirotor built for navigation, surveying, object detection and payload delivery.",
+ p:["Paired a Pixhawk flight controller with a Raspberry Pi companion computer to keep flight control separate from autonomy.","Selected parts by balancing payload, endurance and onboard compute.","Worked across the mechanical, electronics and software teams."],
+ tags:["Pixhawk","Raspberry Pi","Power distribution","Systems integration"],l:[]},
+{t:"Quadruped robot",c:["hardware"],r:"Solo developer, personal project",s:"Built and tested on hardware",img:"images/quadruped.png",
+ d:"A 12-DOF quadruped on an Arduino Nano and twelve SG90 servos that walks and performs gestures such as waving and tilting.",
+ p:["Chose 3 DOF per leg to get natural articulation on a small controller.","Used predefined gait sequences instead of inverse kinematics for repeatable motion.","Added Bluetooth control with an HC-05 module."],
+ tags:["C++","Arduino Nano","Gait control","Servos"],l:[]},
+{t:"PLC clamp and declamp system",c:["hardware"],r:"Mechanical and industrial automation project",s:"Complete",img:"images/plc.png",
+ d:"A Mitsubishi FX3G-14M PLC drives a double-acting pneumatic cylinder through a 5/3 double-solenoid valve.",
+ p:["Wrote the sequence in ladder logic, the industry standard.","Used proximity sensor feedback to confirm cylinder position before the cycle completes."],
+ tags:["Mitsubishi FX3G","Ladder logic","Pneumatics"],l:[]},
+{t:"Surgical arm delay diagnosis",c:["sim","software"],r:"Forage and Johnson & Johnson MedTech, Robotics and Controls simulation",s:"Certificate of completion, 31 July 2026",big:"0.155s to 0.125s",bigsub:"rotate_joint response time",
+ d:"Played the engineer on a hospital ticket: a surgical arm lagged when rotating a joint. Diagnosed the slow command, then proposed a design fix.",
+ p:["Timed three commands in Python and found rotate_joint (0.155s) was the outlier against move_arm (0.104s) and adjust_grip (0.063s).","Applied a 20 percent optimization in simulation, bringing rotate_joint to 0.125s.","Wrote a design proposal covering sensor misalignment and actuator strain, with a joint reinforcement that lifted a durability score from 75 to 90.","Flagged that a flat 20 percent cut is not a root cause, and recommended stress testing before rollout."],
+ tags:["Python","Control diagnostics","Design optimization","Technical report"],l:[]},
+{t:"Warehouse fleet coordination",c:["sim","software"],r:"ProoV, Software Engineering, 8 September 2026",s:"Score 96 out of 100, passed",big:"96/100",bigsub:"ProoV evaluator score",
+ d:"Planned a 200-robot fulfilment centre under peak load: routing, collision handling, charging and idle placement.",
+ p:["A* with a Manhattan heuristic, expanding fewer nodes than Dijkstra.","Cooperative planning with a reservation table over cell and time, plus directed-edge reservations to stop head-on swaps.","Policy: priority watchdog for deadlocks, staggered charging, idle robots parked around the perimeter.","Fleet size of about 36 gave the best throughput in the simulator, peaking at 554 pods per hour."],
+ tags:["A*","Multi-agent planning","Simulation","Executive memo"],l:[]},
+{t:"Machine learning for automotive safety",c:["sim","software"],r:"ProoV, AI and Machine Learning, 9 September 2026",s:"Score 94 out of 100, passed",big:"94/100",bigsub:"ProoV evaluator score",
+ d:"Judged a pedestrian detector on safety rather than average accuracy, then wrote the ship decision.",
+ p:["Defined a detection as IoU of at least 0.5, then computed precision 0.95 and recall 0.87.","Found vulnerable road user recall of 0.76, falling to 0.39 at night and 0.27 at night with occlusion.","Wrote ISO 21448 SOTIF chains from triggering condition to mitigation.","Recommended go with conditions, restricting automated pedestrian braking after dark."],
+ tags:["Detection metrics","Failure analysis","ISO 21448","Safety case"],l:[]}];
+var EDU=[["Degree","Mechanical Engineering with Honors in Robotics and Automation. Add your university, city and years here."]];
+var CERT=[
+["Jul 2026","Robotics and Controls Job Simulation, Forage with Johnson & Johnson MedTech. Completed 31 July 2026."],
+["Sep 2026","ProoV, Amazon Robotics inspired warehouse fleet coordination. Score 96 out of 100."],
+["Sep 2026","ProoV, machine learning for automotive safety. Score 94 out of 100."]];
+var ACH=[
+["AIR 11","SAE AeroTHON 2025, Phase 1, as Electronics Head of Team Squadrone."],
+["Published paper","One of four authors of the autonomous disaster-response drone paper, DAUS 2026 proceedings, page 164."],
+["96 out of 100","ProoV warehouse fleet coordination, evaluator confidence 98 percent."],
+["94 out of 100","ProoV machine learning for automotive safety, evaluator confidence 97 percent."]];
+
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e}
+function chips(a){return '<ul class="chips">'+a.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'}
+function card(o){var c=el('article','card');
+c.appendChild(el('div','top','<h3>'+o.t+'</h3>'+(o.c.indexOf('sim')>-1?'<span class="badge">Job simulation</span>':'')));
+var shot=el('div','shot');
+if(o.big){shot.innerHTML='<div class="big">'+o.big+'<small>'+o.bigsub+'</small></div>'}
+else{var im=new Image();im.alt=o.t;im.loading='lazy';im.onerror=function(){shot.textContent='Add '+o.img};im.src=o.img;shot.appendChild(im)}
+c.appendChild(shot);
+var b=el('div','body');
+b.innerHTML='<div class="role2">'+o.r+'</div><div class="status">'+o.s+'</div><p>'+o.d+'</p><ul class="pts">'+o.p.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'+chips(o.tags)+(o.l.length?'<div class="links">'+o.l.map(function(x){return '<a href="'+x[1]+'">'+x[0]+'</a>'}).join('')+'</div>':'');
+c.appendChild(b);return c}
+function list(id,rows){document.getElementById(id).innerHTML=rows.map(function(a){return '<li><b>'+a[0]+'</b><span>'+a[1]+'</span></li>'}).join('')}
+
+var nav=document.getElementById('nav');
+TABS.forEach(function(t){var b=el('button','',t[1]);b.type='button';b.setAttribute('role','tab');b.dataset.id=t[0];b.onclick=function(){show(t[0],true)};nav.appendChild(b)});
+function show(id,push){if(!document.getElementById(id))id='home';
+document.querySelectorAll('.tab').forEach(function(s){s.classList.toggle('on',s.id===id)});
+nav.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.id===id)});
+if(push){history.replaceState(null,'','#'+id)}window.scrollTo(0,0)}
+window.addEventListener('hashchange',function(){show(location.hash.slice(1))});
+
+var fbar=document.getElementById('filters'),grid=document.getElementById('grid');
+function draw(f){grid.innerHTML='';P.forEach(function(p){if(f==='all'||p.c.indexOf(f)>-1)grid.appendChild(card(p))});
+fbar.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===f)});
+document.getElementById('simNote').hidden=!(f==='sim'||f==='all')}
+FILTERS.forEach(function(f){var b=el('button','',f[1]);b.type='button';b.dataset.f=f[0];b.onclick=function(){draw(f[0])};fbar.appendChild(b)});
+draw('all');
+
+document.getElementById('stats').innerHTML=STATS.map(function(s){return '<div class="stat"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>'}).join('');
+document.getElementById('skills').innerHTML=SKILLS.map(function(s){return '<div class="skill"><h3>'+s[0]+'</h3>'+chips(s[1])+'</div>'}).join('');
+list('eduList',EDU);list('certList',CERT);list('achList',ACH);
+show(location.hash.slice(1)||'home');
+</script>
 </body>
 </html>
