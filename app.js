@@ -3,10 +3,21 @@
  const mediaExts=['png','jpg','jpeg','webp','mp4','webm'];
  const imageExists=src=>new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(true);i.onerror=()=>resolve(false);i.src=src;});
  const fileExists=src=>new Promise(resolve=>{const r=new XMLHttpRequest();r.open('HEAD',src,true);r.onload=()=>resolve(r.status>=200&&r.status<400);r.onerror=()=>resolve(false);r.send();});
+ async function findNumberedItem(prefix,n){
+  for(const ext of mediaExts){
+   const src=`images/${prefix}${n}.${ext}`;
+   const isVideo=ext==='mp4'||ext==='webm';
+   const exists=isVideo?await fileExists(src):await imageExists(src);
+   if(exists)return {src,type:isVideo?'video':'image',number:n};
+  }
+  return null;
+ }
  async function discover(prefix,bare){
   const list=[];
   if(bare){for(const ext of imageExts){const src=`images/${prefix}.${ext}`;if(await imageExists(src)){list.push({src,type:'image'});break;}}}
-  for(let n=1;n<=60;n++){let found=null;for(const ext of mediaExts){const src=`images/${prefix}${n}.${ext}`;const ok=['mp4','webm'].includes(ext)?await fileExists(src):await imageExists(src);if(ok){found={src,type:['mp4','webm'].includes(ext)?'video':'image'};break;}}if(!found)break;list.push(found);}
+  // Probe each number independently. A missing file creates a gap, not an end to the gallery.
+  const candidates=await Promise.all(Array.from({length:60},(_,i)=>findNumberedItem(prefix,i+1)));
+  for(const item of candidates)if(item)list.push(item);
   return list;
  }
  async function initGallery(el){
@@ -15,7 +26,19 @@
   if(!items.length){const empty=document.createElement('div');empty.className='gallery-empty';empty.innerHTML='<div class="empty-icon" aria-hidden="true">▧</div><strong></strong><span>Project imagery</span>';empty.querySelector('strong').textContent=title;el.appendChild(empty);return;}
   let index=0,media;
   const render=()=>{if(media)media.remove();const item=items[index];media=document.createElement(item.type==='video'?'video':'img');media.className=item.type==='video'?'gallery-video':'gallery-image';if(item.type==='video'){media.controls=true;media.playsInline=true;media.preload='metadata';media.src=item.src;}else{media.loading='lazy';media.src=item.src;media.alt=`${title} image ${index+1}`;}el.prepend(media);const count=el.querySelector('.gallery-count');if(count)count.textContent=`${index+1} / ${items.length}`;el.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===index));};
-  if(items.length>1){const prev=document.createElement('button');prev.className='gallery-arrow left';prev.type='button';prev.setAttribute('aria-label','Previous item');prev.textContent='‹';const next=document.createElement('button');next.className='gallery-arrow right';next.type='button';next.setAttribute('aria-label','Next item');next.textContent='›';const count=document.createElement('span');count.className='gallery-count';const dots=document.createElement('div');dots.className='gallery-dots';items.forEach((_,i)=>{const d=document.createElement('button');d.type='button';d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label',`Show gallery item ${i+1}`);d.addEventListener('click',()=>{index=i;render();});dots.appendChild(d);});prev.addEventListener('click',()=>{index=(index-1+items.length)%items.length;render();});next.addEventListener('click',()=>{index=(index+1)%items.length;render();});el.append(prev,next,count,dots);}
+  const stopCardNavigation=event=>{event.preventDefault();event.stopPropagation();};
+  if(items.length>1){
+   const prev=document.createElement('button');prev.className='gallery-arrow left';prev.type='button';prev.setAttribute('aria-label','Previous item');prev.textContent='‹';
+   const next=document.createElement('button');next.className='gallery-arrow right';next.type='button';next.setAttribute('aria-label','Next item');next.textContent='›';
+   const count=document.createElement('span');count.className='gallery-count';
+   const dots=document.createElement('div');dots.className='gallery-dots';
+   items.forEach((_,i)=>{const d=document.createElement('button');d.type='button';d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label',`Show gallery item ${i+1}`);d.addEventListener('click',event=>{stopCardNavigation(event);index=i;render();});dots.appendChild(d);});
+   prev.addEventListener('click',event=>{stopCardNavigation(event);index=(index-1+items.length)%items.length;render();});
+   next.addEventListener('click',event=>{stopCardNavigation(event);index=(index+1)%items.length;render();});
+   // Guard every gallery control from triggering a containing featured-card link.
+   [prev,next,dots].forEach(control=>control.addEventListener('pointerdown',event=>event.stopPropagation()));
+   el.append(prev,next,count,dots);
+  }
   render();
  }
  document.querySelectorAll('[data-gallery]').forEach(initGallery);
